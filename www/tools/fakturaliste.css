@@ -1,0 +1,11 @@
+@media print {
+	body {
+		width: 1200px;
+	}
+}
+h2, p {
+	page-break-after: avoid;
+}
+.printergroup {
+	page-break-inside: avoid;
+}
