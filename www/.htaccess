@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteRule ^$ https://foreningenbs.no/confluence/display/BS/Printer [R,L]
+RewriteRule ^request.php$ https://foreningenbs.no/intern/login [R,L]
+<Files printer.ppd>
+  ForceType applicaton/octet-stream
+  Header set Content-Disposition attachment
+</Files>

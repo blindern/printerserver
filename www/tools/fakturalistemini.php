@@ -21,11 +21,11 @@ if (!preg_match("/^\\d\\d\\d\\d-\\d\\d-\\d\\d$/", $to)) {
 #  SELECT to_char(j.jobdate, 'YYYY') jobyear, to_char(j.jobdate, 'MM') jobmonth, COUNT(j.id) count_jobs, SUM(j.jobsize) sum_jobsize, MAX(j.jobdate) last_jobdate,
 
 // koble til LDAP
-$ad = ldap_connect("ldap://ldap.blindern-studenterhjem.no") or die("Kunne ikke koble til LDAP-database");
+$ad = ldap_connect("ldap://ldap.vpn.foreningenbs.no") or die("Kunne ikke koble til LDAP-database");
 
 function get_name($uid) {
 	global $ad;
-	$r = ldap_search($ad, "ou=Users,dc=blindern-studenterhjem,dc=no", "(uid=$uid)", array("cn"));
+	$r = ldap_search($ad, "ou=Users,dc=foreningenbs,dc=no", "(uid=$uid)", array("cn"));
 	$e = ldap_get_entries($ad, $r);
 	if ($e['count'] == 0) return "Ukjent navn - $uid";
 	return $e[0]['cn'][0];
@@ -52,14 +52,14 @@ foreach ($sth as $row) {
 }
 
 $texts = array(
-	"printoppmann" => "Skal ikke faktureres!",
+	"printeroppmann" => "Skal ikke faktureres!",
 	"fs" => "Skal ikke faktureres!",
 	"beboer" => "Faktureres per beboer!",
 	"ffvaar" => "Faktureres festforeningen for vårsemesteret.",
 	"ffhost" => "Faktureres festforeningen for høstsemesteret."
 );
 $no_faktura = array(
-	"printoppmann",
+	"printeroppmann",
 	"fs"
 );
 
